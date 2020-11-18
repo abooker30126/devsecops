@@ -1,0 +1,337 @@
+##################################################################################
+#
+#   Deloitte Policy:
+#
+#
+#
+#   antbooker@deloiite.com
+#   See Parameters section for names and descriptions of required parameters.
+#
+##################################################################################
+
+Parameters:
+  AccessKeysRotatedParamMaxAccessKeyAge:
+    Default: '90'
+    Type: String
+  AcmCertificateExpirationCheckParamDaysToExpiration:
+    Default: '90'
+    Type: String
+  Ec2VolumeInuseCheckParamDeleteOnTermination:
+    Default: 'TRUE'
+    Type: String
+  GuarddutyNonArchivedFindingsParamDaysHighSev:
+    Default: '1'
+    Type: String
+  GuarddutyNonArchivedFindingsParamDaysLowSev:
+    Default: '30'
+    Type: String
+  GuarddutyNonArchivedFindingsParamDaysMediumSev:
+    Default: '7'
+    Type: String
+  IamPasswordPolicyParamMaxPasswordAge:
+    Default: '90'
+    Type: String
+  IamPasswordPolicyParamMinimumPasswordLength:
+    Default: '14'
+    Type: String
+  IamPasswordPolicyParamPasswordReusePrevention:
+    Default: '24'
+    Type: String
+  IamPasswordPolicyParamRequireLowercaseCharacters:
+    Default: 'TRUE'
+    Type: String
+  IamPasswordPolicyParamRequireNumbers:
+    Default: 'TRUE'
+    Type: String
+  IamPasswordPolicyParamRequireSymbols:
+    Default: 'TRUE'
+    Type: String
+  IamPasswordPolicyParamRequireUppercaseCharacters:
+    Default: 'TRUE'
+    Type: String
+  IamUserUnusedCredentialsCheckParamMaxCredentialUsageAge:
+    Default: '90'
+    Type: String
+  RestrictedIncomingTrafficParamBlockedPort1:
+    Default: '20'
+    Type: String
+  RestrictedIncomingTrafficParamBlockedPort2:
+    Default: '21'
+    Type: String
+  RestrictedIncomingTrafficParamBlockedPort3:
+    Default: '3389'
+    Type: String
+  RestrictedIncomingTrafficParamBlockedPort4:
+    Default: '3306'
+    Type: String
+  RestrictedIncomingTrafficParamBlockedPort5:
+    Default: '4333'
+    Type: String
+  S3AccountLevelPublicAccessBlocksParamBlockPublicAcls:
+    Default: 'True'
+    Type: String
+  S3AccountLevelPublicAccessBlocksParamBlockPublicPolicy:
+    Default: 'True'
+    Type: String
+  S3AccountLevelPublicAccessBlocksParamIgnorePublicAcls:
+    Default: 'True'
+    Type: String
+  S3AccountLevelPublicAccessBlocksParamRestrictPublicBuckets:
+    Default: 'True'
+    Type: String
+  VpcSgOpenOnlyToAuthorizedPortsParamAuthorizedTcpPorts:
+    Default: '443'
+    Type: String
+  VpcSgOpenOnlyToAuthorizedPortsParamAuthorizedUdpPorts:
+    Default: 1020-1025
+    Type: String
+Resources:
+  IamPasswordPolicy:
+    Properties:
+      ConfigRuleName: iam-password-policy
+      InputParameters:
+        MaxPasswordAge:
+          Fn::If:
+          - iamPasswordPolicyParamMaxPasswordAge
+          - Ref: IamPasswordPolicyParamMaxPasswordAge
+          - Ref: AWS::NoValue
+        MinimumPasswordLength:
+          Fn::If:
+          - iamPasswordPolicyParamMinimumPasswordLength
+          - Ref: IamPasswordPolicyParamMinimumPasswordLength
+          - Ref: AWS::NoValue
+        PasswordReusePrevention:
+          Fn::If:
+          - iamPasswordPolicyParamPasswordReusePrevention
+          - Ref: IamPasswordPolicyParamPasswordReusePrevention
+          - Ref: AWS::NoValue
+        RequireLowercaseCharacters:
+          Fn::If:
+          - iamPasswordPolicyParamRequireLowercaseCharacters
+          - Ref: IamPasswordPolicyParamRequireLowercaseCharacters
+          - Ref: AWS::NoValue
+        RequireNumbers:
+          Fn::If:
+          - iamPasswordPolicyParamRequireNumbers
+          - Ref: IamPasswordPolicyParamRequireNumbers
+          - Ref: AWS::NoValue
+        RequireSymbols:
+          Fn::If:
+          - iamPasswordPolicyParamRequireSymbols
+          - Ref: IamPasswordPolicyParamRequireSymbols
+          - Ref: AWS::NoValue
+        RequireUppercaseCharacters:
+          Fn::If:
+          - iamPasswordPolicyParamRequireUppercaseCharacters
+          - Ref: IamPasswordPolicyParamRequireUppercaseCharacters
+          - Ref: AWS::NoValue
+      Source:
+        Owner: AWS
+        SourceIdentifier: IAM_PASSWORD_POLICY
+    Type: AWS::Config::ConfigRule
+ Ec2EbsEncryptionByDefault:
+      Properties:
+        ConfigRuleName: ec2-ebs-encryption-by-default
+        Source:
+          Owner: AWS
+          SourceIdentifier: EC2_EBS_ENCRYPTION_BY_DEFAULT
+      Type: AWS::Config::ConfigRule
+EncryptedVolumes:
+      Properties:
+        ConfigRuleName: encrypted-volumes
+        Scope:
+          ComplianceResourceTypes:
+          - AWS::EC2::Volume
+        Source:
+          Owner: AWS
+          SourceIdentifier: ENCRYPTED_VOLUMES
+      Type: AWS::Config::ConfigRule
+EfsEncryptedCheck:
+      Properties:
+        ConfigRuleName: efs-encrypted-check
+        Source:
+          Owner: AWS
+          SourceIdentifier: EFS_ENCRYPTED_CHECK
+      Type: AWS::Config::ConfigRule
+IamRootAccessKeyCheck:
+    Properties:
+      ConfigRuleName: iam-root-access-key-check
+      Source:
+        Owner: AWS
+        SourceIdentifier: IAM_ROOT_ACCESS_KEY_CHECK
+    Type: AWS::Config::ConfigRule
+MfaEnabledForIamConsoleAccess:
+      Properties:
+        ConfigRuleName: mfa-enabled-for-iam-console-access
+        Source:
+          Owner: AWS
+          SourceIdentifier: MFA_ENABLED_FOR_IAM_CONSOLE_ACCESS
+      Type: AWS::Config::ConfigRule
+MultiRegionCloudTrailEnabled:
+      Properties:
+        ConfigRuleName: multi-region-cloudtrail-enabled
+        Source:
+          Owner: AWS
+          SourceIdentifier: MULTI_REGION_CLOUD_TRAIL_ENABLED
+      Type: AWS::Config::ConfigRule
+VpcSgOpenOnlyToAuthorizedPorts:
+      Properties:
+        ConfigRuleName: vpc-sg-open-only-to-authorized-ports
+        InputParameters:
+          authorizedTcpPorts:
+            Fn::If:
+            - vpcSgOpenOnlyToAuthorizedPortsParamAuthorizedTcpPorts
+            - Ref: VpcSgOpenOnlyToAuthorizedPortsParamAuthorizedTcpPorts
+            - Ref: AWS::NoValue
+          authorizedUdpPorts:
+            Fn::If:
+            - vpcSgOpenOnlyToAuthorizedPortsParamAuthorizedUdpPorts
+            - Ref: VpcSgOpenOnlyToAuthorizedPortsParamAuthorizedUdpPorts
+            - Ref: AWS::NoValue
+        Scope:
+          ComplianceResourceTypes:
+          - AWS::EC2::SecurityGroup
+        Source:
+          Owner: AWS
+          SourceIdentifier: VPC_SG_OPEN_ONLY_TO_AUTHORIZED_PORTS
+      Type: AWS::Config::ConfigRule
+RootAccountMfaEnabled:
+        Properties:
+          ConfigRuleName: root-account-mfa-enabled
+          Source:
+            Owner: AWS
+            SourceIdentifier: ROOT_ACCOUNT_MFA_ENABLED
+        Type: AWS::Config::ConfigRule
+CloudTrailEncryptionEnabled:
+          Properties:
+            ConfigRuleName: cloud-trail-encryption-enabled
+            Source:
+              Owner: AWS
+              SourceIdentifier: CLOUD_TRAIL_ENCRYPTION_ENABLED
+          Type: AWS::Config::ConfigRule
+VpcDefaultSecurityGroupClosed:
+            Properties:
+              ConfigRuleName: vpc-default-security-group-closed
+              Scope:
+                ComplianceResourceTypes:
+                - AWS::EC2::SecurityGroup
+              Source:
+                Owner: AWS
+                SourceIdentifier: VPC_DEFAULT_SECURITY_GROUP_CLOSED
+            Type: AWS::Config::ConfigRule
+S3BucketPublicWriteProhibited:
+              Properties:
+                ConfigRuleName: s3-bucket-public-write-prohibited
+                Scope:
+                  ComplianceResourceTypes:
+                  - AWS::S3::Bucket
+                Source:
+                  Owner: AWS
+                  SourceIdentifier: S3_BUCKET_PUBLIC_WRITE_PROHIBITED
+              Type: AWS::Config::ConfigRule
+S3BucketPublicReadProhibited:
+                Properties:
+                  ConfigRuleName: s3-bucket-public-read-prohibited
+                  Scope:
+                    ComplianceResourceTypes:
+                    - AWS::S3::Bucket
+                  Source:
+                    Owner: AWS
+                    SourceIdentifier: S3_BUCKET_PUBLIC_READ_PROHIBITED
+                Type: AWS::Config::ConfigRule
+S3BucketServerSideEncryptionEnabled:
+                  Properties:
+                    ConfigRuleName: s3-bucket-server-side-encryption-enabled
+                    Scope:
+                      ComplianceResourceTypes:
+                      - AWS::S3::Bucket
+                    Source:
+                      Owner: AWS
+                      SourceIdentifier: S3_BUCKET_SERVER_SIDE_ENCRYPTION_ENABLED
+                  Type: AWS::Config::ConfigRule
+S3BucketLoggingEnabled:
+                      Properties:
+                        ConfigRuleName: s3-bucket-logging-enabled
+                        Scope:
+                          ComplianceResourceTypes:
+                          - AWS::S3::Bucket
+                        Source:
+                          Owner: AWS
+                          SourceIdentifier: S3_BUCKET_LOGGING_ENABLED
+                      Type: AWS::Config::ConfigRule
+Ec2VolumeInuseCheck:
+                    Properties:
+                      ConfigRuleName: ec2-volume-inuse-check
+                      InputParameters:
+                        deleteOnTermination:
+                          Fn::If:
+                          - ec2VolumeInuseCheckParamDeleteOnTermination
+                          - Ref: Ec2VolumeInuseCheckParamDeleteOnTermination
+                          - Ref: AWS::NoValue
+                      Scope:
+                        ComplianceResourceTypes:
+                        - AWS::EC2::Volume
+                      Source:
+                        Owner: AWS
+                        SourceIdentifier: EC2_VOLUME_INUSE_CHECK
+                    Type: AWS::Config::ConfigRule
+IncomingSshDisabled:
+                      Properties:
+                        ConfigRuleName: restricted-ssh
+                        Scope:
+                          ComplianceResourceTypes:
+                          - AWS::EC2::SecurityGroup
+                        Source:
+                          Owner: AWS
+                          SourceIdentifier: INCOMING_SSH_DISABLED
+                      Type: AWS::Config::ConfigRule
+CloudTrailLogFileValidationEnabled:
+                        Properties:
+                          ConfigRuleName: cloud-trail-log-file-validation-enabled
+                          Source:
+                            Owner: AWS
+                            SourceIdentifier: CLOUD_TRAIL_LOG_FILE_VALIDATION_ENABLED
+                        Type: AWS::Config::ConfigRule
+RestrictedIncomingTraffic:
+                          Properties:
+                            ConfigRuleName: restricted-common-ports
+                            InputParameters:
+                              blockedPort1:
+                                Fn::If:
+                                - restrictedIncomingTrafficParamBlockedPort1
+                                - Ref: RestrictedIncomingTrafficParamBlockedPort1
+                                - Ref: AWS::NoValue
+                              blockedPort2:
+                                Fn::If:
+                                - restrictedIncomingTrafficParamBlockedPort2
+                                - Ref: RestrictedIncomingTrafficParamBlockedPort2
+                                - Ref: AWS::NoValue
+                              blockedPort3:
+                                Fn::If:
+                                - restrictedIncomingTrafficParamBlockedPort3
+                                - Ref: RestrictedIncomingTrafficParamBlockedPort3
+                                - Ref: AWS::NoValue
+                              blockedPort4:
+                                Fn::If:
+                                - restrictedIncomingTrafficParamBlockedPort4
+                                - Ref: RestrictedIncomingTrafficParamBlockedPort4
+                                - Ref: AWS::NoValue
+                              blockedPort5:
+                                Fn::If:
+                                - restrictedIncomingTrafficParamBlockedPort5
+                                - Ref: RestrictedIncomingTrafficParamBlockedPort5
+                                - Ref: AWS::NoValue
+                            Scope:
+                              ComplianceResourceTypes:
+                              - AWS::EC2::SecurityGroup
+                            Source:
+                              Owner: AWS
+                              SourceIdentifier: RESTRICTED_INCOMING_TRAFFIC
+                          Type: AWS::Config::ConfigRule
+  IamUserMfaEnabled:
+                            Properties:
+                              ConfigRuleName: iam-user-mfa-enabled
+                              Source:
+                                Owner: AWS
+                                SourceIdentifier: IAM_USER_MFA_ENABLED
+                            Type: AWS::Config::ConfigRule
