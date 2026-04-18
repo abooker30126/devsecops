@@ -1,0 +1,107 @@
+name: GPG Sign Modified Files
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sign-files:
+    name: Sign Modified Files with GPG
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout PR branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install GPG
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq gnupg
+
+      - name: Import GPG private key
+        env:
+          GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+        run: |
+          echo "$GPG_PRIVATE_KEY" | gpg --batch --import
+          # Trust the imported key ultimately
+          KEY_ID=$(gpg --list-secret-keys --keyid-format=long \
+            | grep '^sec' | head -n1 \
+            | awk '{print $2}' | cut -d'/' -f2)
+          echo "${KEY_ID}:6:" | gpg --import-ownertrust
+          echo "GPG_KEY_ID=$KEY_ID" >> "$GITHUB_ENV"
+
+      - name: Get list of modified files
+        id: changed-files
+        run: |
+          BASE_SHA=${{ github.event.pull_request.base.sha }}
+          HEAD_SHA=${{ github.event.pull_request.head.sha }}
+          CHANGED=$(git diff --name-only "$BASE_SHA" "$HEAD_SHA" \
+            | grep -E '\.(sh|py|yml|yaml|tf)$' || true)
+          echo "Changed files matching target extensions:"
+          echo "$CHANGED"
+          # Store as newline-delimited list in an env file
+          {
+            echo "FILES<<EOF"
+            echo "$CHANGED"
+            echo "EOF"
+          } >> "$GITHUB_ENV"
+
+      - name: Sign modified files
+        if: env.FILES != ''
+        env:
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+        run: |
+          chmod +x .github/scripts/sign-files.sh
+          echo "$FILES" | tr '\n' '\0' | xargs -0 -I{} \
+            bash -c '[ -n "{}" ] && .github/scripts/sign-files.sh "{}"'
+
+      - name: Commit signatures
+        if: env.FILES != ''
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add '*.gpg.sig'
+          if git diff --cached --quiet; then
+            echo "No new or changed signatures to commit."
+          else
+            git commit -m "chore: add/update GPG signatures for modified files [skip ci]"
+            git push origin HEAD:${{ github.head_ref }}
+          fi
+
+      - name: Post signature report to PR
+        if: env.FILES != ''
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const files = process.env.FILES.split('\n').filter(Boolean);
+            const sigLines = files.map(f => `- \`${f}\` → \`${f}.gpg.sig\``).join('\n');
+            const body = [
+              '## 🔏 GPG Signature Report',
+              '',
+              'The following files were signed with GPG on this PR:',
+              '',
+              sigLines,
+              '',
+              'To verify a signature locally, run:',
+              '```bash',
+              'gpg --verify <file>.gpg.sig <file>',
+              '```',
+              '',
+              'See [`.github/SECURITY_KEYS.md`](.github/SECURITY_KEYS.md) for full verification instructions.',
+            ].join('\n');
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo:  context.repo.repo,
+              issue_number: context.issue.number,
+              body,
+            });
