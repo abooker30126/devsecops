@@ -130,11 +130,8 @@ I'm always open to collaborating on:
 - 🔧 DevSecOps tooling and secure development practices
 
 **Let's connect:**
-- 💼 [LinkedIn](https://linkedin.com) — Professional updates and insights
 - 🐙 [GitHub](https://github.com/abooker30126) — Code and projects
 - 📧 Email — tony.booker@example.com
-- 🌐 Portfolio — [yourportfolio.com](https://yourportfolio.com)
-
 ---
 
 **Last Updated:** April 18, 2026
