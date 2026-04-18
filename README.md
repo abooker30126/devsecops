@@ -10,7 +10,7 @@ Securing the future of autonomous flight through AI and cloud security innovatio
 - [About](#about)
 - [Featured Projects](#-featured-projects)
 - [Repository Structure](#-repository-structure)
-- [What I'm Working On](#-whats-working-on)
+- [What I'm Working On](#️-what-im-working-on)
 - [Technical Skills](#-technical-skills)
 - [Certifications](#-certifications)
 - [Interests & Hobbies](#-interests--hobbies)
