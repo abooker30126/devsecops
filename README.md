@@ -9,6 +9,7 @@ Securing the future of autonomous flight through AI and cloud security innovatio
 ## Table of Contents
 - [About](#about)
 - [Featured Projects](#-featured-projects)
+- [Repository Structure](#-repository-structure)
 - [What I'm Working On](#-whats-working-on)
 - [Technical Skills](#-technical-skills)
 - [Certifications](#-certifications)
@@ -33,6 +34,43 @@ This repository contains labs, tools, and resources for DevSecOps, cloud securit
 - **[my-arsenal-of-aws-security-tools/](my-arsenal-of-aws-security-tools/)** - Curated collection of open-source AWS security tools and frameworks
 - **[AI Forensics Labs](./ai-forensics/)** - Hands-on security testing and adversarial analysis exercises
 - **[Autonomous Flight Security](./flight-security/)** - Research and tools for secure drone platform development
+
+---
+
+## 📁 Repository Structure
+
+```
+devsecops/
+├── AWS+Automation/
+│   └── AWS Automation/
+│       ├── 1.Introduction and Environment setup for boto3/
+│       ├── 3. STS/
+│       ├── 4. EC2 Services/
+│       ├── 5. waiters/
+│       ├── 7.Collections/
+│       ├── 8. Practice with EC2 Services/
+│       ├── 9.Boto3 Scripts execution with roles/
+│       └── 11. IAM/
+├── CodeDeploy/
+│   ├── CodeDeployDemo-EC2-Permissions.json
+│   └── CodeDeployDemo-EC2-Trust.json
+├── config-rules-terraform/
+│   ├── administrator_account/
+│   ├── secondary_account/
+│   ├── conformance-packs/
+│   └── README.md
+├── learn-terraform-provisioning/
+│   └── terraform/
+├── my-arsenal-of-aws-security-tools/
+│   ├── ami/
+│   ├── kreator/
+│   ├── former-list.md
+│   ├── LICENSE
+│   └── README.md
+├── packer/
+│   └── terraform/
+└── README.md
+```
 
 ---
 
