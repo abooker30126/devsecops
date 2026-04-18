@@ -1,68 +1,142 @@
-👋 Hi, I’m Tony Booker
-AI Security • Cloud Security • Autonomous Systems • Drone Engineering
-I’m a security‑minded engineer pursuing my Master’s in Artificial Intelligence, specializing in autonomous vehicle flight security. My work sits at the intersection of AI, cloud security, and autonomous systems, where I focus on securing next‑generation workloads — from LLM pipelines to autonomous flight platforms.
+# 👋 Hi, I'm Tony Booker
 
-I’m currently building skills and projects around:
+**AI Security • Cloud Security • Autonomous Systems • Drone Engineering**
 
-AI security operations
+Securing the future of autonomous flight through AI and cloud security innovation.
 
-Cloud security engineering
+---
 
-Autonomous drone systems & flight safety
+## Table of Contents
+- [About](#about)
+- [Featured Projects](#-featured-projects)
+- [What I'm Working On](#-whats-working-on)
+- [Technical Skills](#-technical-skills)
+- [Certifications](#-certifications)
+- [Interests & Hobbies](#-interests--hobbies)
+- [Get In Touch](#-get-in-touch)
 
-AI forensics & adversarial testing
+---
 
-Container and API security
+## About
 
-Automation, scripting, and workflow orchestration
+I'm a security-minded engineer pursuing my Master's in Artificial Intelligence, specializing in autonomous vehicle flight security. My work sits at the intersection of AI, cloud security, and autonomous systems.
 
-My long‑term mission is to help shape the future of secure autonomous flight, ensuring that AI‑driven systems are resilient, trustworthy, and safe.
+**My Mission:** To help shape the future of secure autonomous flight, ensuring that AI-driven systems are resilient, trustworthy, and safe.
 
-🚀 What I’m Working On
-Advancing my graduate research in autonomous vehicle flight security
+---
 
-Hands‑on labs in AI forensics, container vulnerabilities, and cloud incident response
+## 🚀 Featured Projects
 
-Exploring PyRIT and other AI risk‑identification frameworks
+This repository contains labs, tools, and resources for DevSecOps, cloud security, and autonomous systems:
 
-Building and securing custom drone platforms
+- **[config-rules-terraform/](config-rules-terraform/)** - Terraform templates for AWS Config Rules across multi-region AWS Organizations
+- **[my-arsenal-of-aws-security-tools/](my-arsenal-of-aws-security-tools/)** - Curated collection of open-source AWS security tools and frameworks
+- **[AI Forensics Labs](./ai-forensics/)** - Hands-on security testing and adversarial analysis exercises
+- **[Autonomous Flight Security](./flight-security/)** - Research and tools for secure drone platform development
 
-Developing automation workflows for security operations
+---
 
-🧠 Technical Interests
-AI/ML Security
+## 🏗️ What I'm Working On
 
-Cloud Security (Azure, AWS)
+- 🎓 Advancing graduate research in autonomous vehicle flight security
+- 🧪 Hands-on labs in AI forensics, container vulnerabilities, and cloud incident response
+- 🔬 Exploring PyRIT and other AI risk-identification frameworks
+- 🚁 Building and securing custom drone platforms
+- ⚙️ Developing automation workflows for security operations (SOAR)
 
-API & Gateway Security
+---
 
-Autonomous Systems
+## 🧠 Technical Skills
 
-SOAR & workflow automation
+### AI/ML Security
+- Adversarial ML testing and robustness evaluation
+- LLM security and prompt injection analysis
+- AI forensics and model interpretation
+- PyRIT and other red teaming frameworks
 
-Threat modeling for AI workloads
+### Cloud Security (AWS, Azure)
+- AWS Config Rules and compliance automation
+- Identity & Access Management (IAM) optimization
+- Container security and vulnerability scanning
+- CloudTrail monitoring and incident response
+- Infrastructure-as-Code security (Terraform, CloudFormation)
 
-Secure MLOps pipelines
+### API & Gateway Security
+- OAuth 2.0 / OpenID Connect implementation
+- API gateway policies and rate limiting
+- GraphQL security considerations
+- RESTful security best practices
 
-🛠️ Tools & Technologies
-Security & Cloud: Prisma (AIRS), XSOAR‑style automation, container security, API gateways
-AI & Data: Python, PyTorch, LLM evaluation, AI forensics
-Automation: Scripting, workflow engines, CI/CD
-Hardware & Flight: Custom drone builds, flight controllers, telemetry systems
+### Autonomous Systems & Flight Safety
+- Drone flight controller programming
+- Sensor integration and telemetry systems
+- Safety-critical system design
+- Real-world robotics and embedded systems
+- FAA Part 107 Flight Operations
 
-🥁 Outside of Tech
-When I’m not deep in AI security, you’ll probably find me:
+### Security Operations & Automation
+- SOAR platform orchestration (XSOAR-style automation)
+- Workflow engines and CI/CD security
+- Threat modeling for AI workloads
+- Secure MLOps pipeline development
 
-Playing the drums or bass guitar — rhythm keeps me grounded
+---
 
-Bui;ding and experimenting with autonomous flight, sensors, and safety systems
+## 🛠️ Tools & Technologies
 
-Flying FPV or cinematic drones (FAA part 107 certified pilot)
+| Category | Tools & Frameworks |
+|----------|-------------------|
+| **Security & Cloud** | Prisma (AIRS), XSOAR automation, Terraform, AWS Config, HashiCorp Vault |
+| **AI & Data** | Python, PyTorch, PyRIT, LLM evaluation frameworks, TensorFlow |
+| **Automation** | Scripting (Bash, Python), Workflow engines, GitHub Actions, CI/CD |
+| **Container & API** | Docker, Kubernetes, API Gateway security, Falco |
+| **Hardware & Flight** | Custom drone builds, Pixhawk controllers, MAVLink telemetry, PX4 firmware |
 
-Learning new ways to merge AI with real‑world robotics
+---
 
-These hobbies fuel my curiosity and directly influence my work in autonomous systems.
+## 📜 Certifications
 
-📫 Let’s Connect
-I’m always open to collaborating on AI security, cloud engineering, or autonomous systems projects.
-If you’re working on something in that space, I’d love to talk.
+- ✈️ **FAA Part 107 Commercial Drone Pilot** - Certified for commercial UAS operations
+- 🎓 **Master's in Artificial Intelligence** (In Progress) - Focus on autonomous systems security
+- 📚 Additional certifications in cloud security and DevSecOps available upon request
+
+---
+
+## 🥁 Interests & Hobbies
+
+When I'm not deep in AI security, you'll find me:
+
+- 🎸 **Playing drums and bass guitar** — rhythm keeps me grounded
+- 🚁 **Building and experimenting** with autonomous flight, sensors, and safety systems
+- 📹 **Flying FPV and cinematic drones** — combining engineering with creative storytelling
+- 🤖 **Learning new ways** to merge AI with real-world robotics
+
+These hobbies directly fuel my curiosity and influence my professional work in autonomous systems.
+
+---
+
+## Topics & Tags
+
+`#ai-security` `#cloud-security` `#devsecops` `#autonomous-systems` `#drone-engineering` `#terraform` `#aws` `#azure` `#mlops` `#cybersecurity`
+
+---
+
+## 📬 Get In Touch
+
+I'm always open to collaborating on:
+- 🔒 AI security and adversarial testing projects
+- ☁️ Cloud security engineering and compliance automation
+- 🚁 Autonomous systems and flight safety innovations
+- 🔧 DevSecOps tooling and secure development practices
+
+**Let's connect:**
+- 💼 [LinkedIn](https://linkedin.com) — Professional updates and insights
+- 🐙 [GitHub](https://github.com/abooker30126) — Code and projects
+- 📧 Email — tony.booker@example.com
+- 🌐 Portfolio — [yourportfolio.com](https://yourportfolio.com)
+
+---
+
+**Last Updated:** April 18, 2026
+
+Topics: `ai-security` `cloud-security` `devsecops` `autonomous-systems` `drone-engineering` `terraform` `aws`
