@@ -134,10 +134,10 @@ devsecops/
 
 ## 📜 Certifications
 
-- ✈️ **FAA Part 107 Commercial Drone Pilot** - Certified for commercial UAS operations
 - 🎓 **Master's in Artificial Intelligence** (In Progress) - Focus on autonomous systems security
-- 📚 Additional certifications in cloud security and DevSecOps available upon request
-
+- 📚 **Certifications in cloud security and DevSecOps** - AI, AWS, Azure, GCP, terraform
+- ✈️ **FAA Part 107 Commercial Drone Pilot** - Certified for commercial UAS operations
+  
 ---
 
 ## 🥁 Interests & Hobbies
