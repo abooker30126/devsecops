@@ -55,7 +55,7 @@ When I’m not deep in AI security, you’ll probably find me:
 
 Playing the drums or bass guitar — rhythm keeps me grounded
 
-Building and flying drones — experimenting with autonomous flight, sensors, and safety systems
+Bui;ding and experimenting with autonomous flight, sensors, and safety systems
 
 Flying FPV or cinematic drones (FAA part 107 certified pilot)
 
