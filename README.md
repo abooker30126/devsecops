@@ -131,7 +131,7 @@ I'm always open to collaborating on:
 
 **Let's connect:**
 - 🐙 [GitHub](https://github.com/abooker30126) — Code and projects
-- 📧 Email — tony.booker@example.com
+- 📧 Email — tony.booker@rocketmail.com
 ---
 
 **Last Updated:** April 18, 2026
