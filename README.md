@@ -169,7 +169,7 @@ I'm always open to collaborating on:
 
 **Let's connect:**
 - 🐙 [GitHub](https://github.com/abooker30126) — Code and projects
-- 📧 Email — tony.booker@rocketmail.com
+- 📧 Email — tonybooker@rocketmail.com
 ---
 
 **Last Updated:** April 18, 2026
