@@ -1,0 +1,32 @@
+# .gpg-ignore
+# Files and directories to skip during GPG signing.
+# Supports shell glob patterns (matched against the file path from repo root).
+# Lines starting with # are comments.
+
+# Dependency and vendor directories
+node_modules/**
+vendor/**
+.venv/**
+__pycache__/**
+
+# Signature files themselves (avoid signing signatures)
+*.gpg.sig
+
+# Compiled / generated output
+*.pyc
+dist/**
+build/**
+*.tfstate
+*.tfstate.backup
+.terraform/**
+
+# OS and editor artefacts
+.DS_Store
+*.swp
+*.swo
+*~
+
+# Secrets and local-only configs (should never be committed anyway)
+*.env
+.env.*
+secrets/**
